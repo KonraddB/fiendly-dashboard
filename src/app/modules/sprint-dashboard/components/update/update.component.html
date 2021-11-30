@@ -1,0 +1,69 @@
+<div [formGroup]="projectForm">
+  <div
+    class="row align-items-center justify-content-center"
+    formArrayName="sprintArr"
+  >
+    <div
+      class="col-md-10 pt-5"
+      *ngFor="let sprint of sprints.controls; let i = index; first as isFirst"
+    >
+      <mat-card
+        [formGroupName]="i"
+        *ngIf="
+          (isFirst && displayMode.add) ||
+          (displayMode.edit && !sprint?.get('isAchieve')?.value)
+        "
+      >
+        <mat-card-content>
+          <div class="row">
+            <mat-form-field class="col-md-2" appearance="fill">
+              <mat-label>Numer</mat-label>
+              <input
+                matInput
+                placeholder="Wprowadź nazwę"
+                formControlName="number"
+                type="number"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-md-2" appearance="fill">
+              <mat-label>Nazwa projektu</mat-label>
+              <input
+                matInput
+                placeholder="Wprowadź nazwę"
+                formControlName="projectName"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-md-2" appearance="fill">
+              <mat-label>Data rozpoczęcia sprintu</mat-label>
+              <input
+                matInput
+                placeholder="Wprowadź datę"
+                formControlName="sprintStartDate"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-md-2" appearance="fill">
+              <mat-label>Data zakończenia sprintu</mat-label>
+              <input
+                matInput
+                placeholder="Wprowadź nazwę"
+                formControlName="sprintEndDate"
+              />
+            </mat-form-field>
+            <mat-form-field class="col-md-2" appearance="fill">
+              <mat-label>Pozostałe dni</mat-label>
+              <input
+                matInput
+                placeholder="Wprowadź nazwę"
+                formControlName="otherDays"
+                type="number"
+              />
+            </mat-form-field>
+            <mat-checkbox class="col-md-2" formControlName="releaseOnProd"
+              >Wydany na prod</mat-checkbox
+            >
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

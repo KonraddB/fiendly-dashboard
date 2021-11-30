@@ -1,0 +1,59 @@
+<div
+  class="row align-items-center justify-content-center"
+  *ngFor="
+    let sprint of projectForm.controls.sprintArr['controls'];
+    let i = index
+  "
+>
+  <div
+    class="col-md-10 pt-5"
+    *ngIf="
+      (displayMode.preview && !sprint.get('isAchieve').value) ||
+      (displayMode.achieve && sprint.get('isAchieve').value)
+    "
+  >
+    <mat-card>
+      <mat-card-title class="mb-4" *ngIf="displayMode.preview">
+        <div class="row">
+          <div class="col d-flex justify-content-end">
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="archiveProject(sprint)"
+            >
+              Archiwizuj
+            </button>
+          </div>
+        </div>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-1">
+            <label>Numer</label>
+            <p>{{ sprint.get("number").value }}</p>
+          </div>
+          <div class="col-md-2">
+            <label>Nazwa projektu</label>
+            <p>{{ sprint.get("projectName").value }}</p>
+          </div>
+          <div class="col-md-3">
+            <label>Data rozpoczęcia sprintu</label>
+            <p>{{ sprint.get("sprintStartDate").value }}</p>
+          </div>
+          <div class="col-md-2">
+            <label>Data ukończenia sprintu</label>
+            <p>{{ sprint.get("sprintEndDate").value }}</p>
+          </div>
+          <div class="col-md-2">
+            <label>Pozostałe dni</label>
+            <p>{{ sprint.get("otherDays").value }}</p>
+          </div>
+          <div class="col-md-2">
+            <label>Wydany na produkcje</label>
+            <p>{{ sprint.get("releaseOnProd").value ? "Tak" : "Nie" }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="container home pt-5 pb-5" [formGroup]="projectForm">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-md-10 pt-5">
+      <button
+        mat-raised-button
+        color="primary"
+        class="ml-5 float-end"
+        *ngIf="displayMode.preview"
+        (click)="addProject()"
+      >
+        Dodaj
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="float-end"
+        *ngIf="displayMode.preview"
+        (click)="changeFormMode(EDisplayMode.EDIT)"
+      >
+        Edytuj
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="m-0 float-end"
+        *ngIf="displayMode.edit || displayMode.add"
+        (click)="changeFormMode(EDisplayMode.PREVIEW)"
+      >
+        Zapisz
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="ml-5 float-end"
+        *ngIf="displayMode.preview"
+        (click)="changeFormMode(EDisplayMode.ACHIEVE)"
+      >
+        Lista zarchiwizowanych
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="ml-5 float-end"
+        *ngIf="displayMode.achieve"
+        (click)="changeFormMode(EDisplayMode.PREVIEW)"
+      >
+        Lista projektów
+      </button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="displayMode.preview || displayMode.achieve">
+    <app-preview
+      [projectForm]="projectForm"
+      [displayMode]="displayMode"
+    ></app-preview>
+  </ng-container>
+  <ng-container *ngIf="displayMode.edit || displayMode.add">
+    <app-update
+      [projectForm]="projectForm"
+      [displayMode]="displayMode"
+    ></app-update>
+  </ng-container>
+</div>
